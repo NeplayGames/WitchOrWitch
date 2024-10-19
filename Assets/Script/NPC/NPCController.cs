@@ -1,23 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace WitchOrWhich.NPC
 {
     public class NPCController : MonoBehaviour
     {
-        [SerializeField] private NavMeshAgent navMeshAgent;
-        public ERole role { get; private set; }
+        [SerializeField] private EType eType;
+
+        public ERole NPCRole { get; private set; }
         public void AssignRole(ERole eRole){
-            role = eRole;
+            NPCRole = eRole;
         }
-        void Start()
-        {
-            navMeshAgent.updateRotation = false;
-            navMeshAgent.updateUpAxis = false;
+
+        public bool IsWitch { get; private set; }
+
+        public void SetWitch(bool IsWitch){
+            this.IsWitch = IsWitch;
         }
-        
+
+        public void Reset(){
+            IsWitch = false;
+        }
 
     }
 

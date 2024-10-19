@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8197ff79b9f78c84ab82aca089b5de34, type: 3}
+  m_Name: NPC DB
+  m_EditorClassIdentifier: 
+  <roledNPC>k__BackingField:
+  - {fileID: 3114633043526557147, guid: 1b75efd55881455478d1c71daa12abd2, type: 3}
+  - {fileID: 7700368798308036844, guid: ceb9c5ef05ca3ee42b871f0963a7c15d, type: 3}
+  - {fileID: 3233944669045333574, guid: 16b833620116d0e499cd8559d7c1ef20, type: 3}
+  - {fileID: 966498425841789457, guid: e1681cb0f609cdc498d6e0480ee9399c, type: 3}
+  - {fileID: 6956732912681686951, guid: b45c8c821c3276b4e84f51fd4ff55d21, type: 3}
+  - {fileID: 1565980676490049249, guid: 6f14a29f215b00947b5244aaa2f04d89, type: 3}
+  <genericNPC>k__BackingField:
+  - {fileID: 2879800914361875735, guid: 16a5414f0bb98ac48b301e447ad3b733, type: 3}
+  - {fileID: 2879800914361875735, guid: 17243c977ed425b4dad42b7663a51d73, type: 3}
+  - {fileID: 2879800914361875735, guid: b76355a641497864d90e2776127d995a, type: 3}
+  - {fileID: 2879800914361875735, guid: 1f15265f2dc6cce429237e9636d43b00, type: 3}
+  - {fileID: 2879800914361875735, guid: d94e21fcf15e6d544af68ef034db9cd9, type: 3}
+  - {fileID: 4364825455728244093, guid: 1b4a51ef90c46184e9278dabf3e22919, type: 3}
+  - {fileID: 4364825455728244093, guid: 5dff42c6a4b2f6d48b4b959f4180548d, type: 3}
