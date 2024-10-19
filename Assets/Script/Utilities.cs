@@ -18,5 +18,17 @@ namespace WitchOrWhich.Utils
                 _ => "",
             };
         }
+
+        public static string GetRoledNPCJob(ERole eRole){
+            return eRole switch{
+                ERole.Engineer => "Engineer",
+                ERole.Scientist => "Scientist",
+                ERole.Police => "Police",
+                ERole.Doctor => "Doctor",
+                ERole.Jester => "Jester",
+                ERole.lawyer => "Lawyer",
+                _ => "",
+            };
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace WitchOrWhich.NPC
         private readonly GameConfig gameConfig;
         private readonly int totalRoledNPC;
         private readonly Transform spawnPointParent;
+
+        public event Action InitializedRoledNPC;
         List<Transform> InstantiateGenericPlayers = new();
         private Transform witchNPC;
         public NPCManager(NPCDB nPCDB,Transform spawnPointParent, GameConfig gameConfig)
