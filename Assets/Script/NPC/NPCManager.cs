@@ -18,12 +18,14 @@ namespace WitchOrWhich.NPC
         List<Transform> InstantiateGenericPlayers = new();
         List<Vector3> instantiatePositions = new();
         private Transform witchNPC;
-        public NPCManager(NPCDB nPCDB,Transform spawnPointParent, GameConfig gameConfig)
+        private AudioSource killAudioSource;
+        public NPCManager(NPCDB nPCDB,Transform spawnPointParent, GameConfig gameConfig, AudioSource audioSource)
         {
             this.nPCDB = nPCDB;
             totalRoledNPC = nPCDB.roledNPC.Length;
             this.spawnPointParent = spawnPointParent;
             this.gameConfig = gameConfig;
+            this.killAudioSource = audioSource;
         }
 
         public void Init(){
@@ -31,8 +33,14 @@ namespace WitchOrWhich.NPC
             InitializeGenericNPC();
         }
 
-        public void NPCKillPlayer(){      
-            KillNearestNPC(witchNPC.transform.position);
+        public void NPCKillPlayer(){     
+            int range = random.Next(1,3);
+            Debug.Log(range);
+
+            while(range > 0){
+                KillNearestNPC(witchNPC.transform.position);
+                range--;
+            } 
         }
 
         private void InitializeGenericNPC()
@@ -59,7 +67,6 @@ namespace WitchOrWhich.NPC
             ShuffleNPC(ref nPCController);
             List<int> enums = new List<int>() { 0, 1, 2, 3, 4, 5 };
             int witchIndex = random.Next(0, totalRoledNPC);
-            Debug.Log(witchIndex);
             int n = totalRoledNPC;
             while (n > 0)
             {
@@ -77,6 +84,7 @@ namespace WitchOrWhich.NPC
         }
 
         public void KillNearestNPC(Vector2 Pos){
+            killAudioSource.Play();
             float minLength = Mathf.Infinity;
             int index = 0;
             for(int i =0; i < InstantiateGenericPlayers.Count; i++){

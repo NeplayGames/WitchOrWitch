@@ -8,14 +8,15 @@ using WitchOrWhich.DataBase;
 using WitchOrWhich.NPC;
 using WitchOrWhich.Player;
 using WitchOrWhich.UI;
+using WitchOrWhich.Utils;
 
 namespace WitchOrWhich{
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private NPCDB nPCDB;
-        [SerializeField] private SpriteDB spriteDB;
+        [SerializeField] private AudioSource killAudioSource;
         [SerializeField] private GameConfig gameConfig;
-        [SerializeField] private PlayerInfoUI playerInfoUI;
+        [SerializeField] private List<PumpkinWitchController> pumpkinWitchController;
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private GameObject hidePanel;
         [SerializeField] private Info info;
@@ -24,50 +25,57 @@ namespace WitchOrWhich{
         [SerializeField] private GameObject playerRoleSelectionPanel;
         private NPCManager nPCManager;
         void Start(){
-            nPCManager = new NPCManager(nPCDB, spawnPoint, gameConfig);
+            nPCManager = new NPCManager(nPCDB, spawnPoint, gameConfig, killAudioSource);
             StartCoroutine(RemovePanel());
-            playerInfoUI.Init(nPCManager, spriteDB);
-            nPCManager.Init();
-            
+            nPCManager.Init(); 
+            foreach(var pWC in pumpkinWitchController)      
+                pWC.Init(gameConfig); 
         }
 
         IEnumerator StartDangerTime(){
-            yield return new WaitForSeconds(7);
+            yield return new WaitForSeconds(3);
             StartCoroutine(CoverNPC());
         }
 
          IEnumerator CoverNPC(){
-            hidePanel.SetActive(true);
-            yield return new WaitForSeconds(1);
+            foreach(var pWC in pumpkinWitchController){
+                pWC.canMove = true;
+            }
+            info.SetInfoText("Witch has possessed someone and is on kill rampage. To distract she has summon her friends as well.");
+            yield return new WaitForSeconds(3);
             nPCManager.NPCKillPlayer();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
             nPCManager.NPCKillPlayer();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
             nPCManager.NPCKillPlayer();
             yield return new WaitForSeconds(2);
-            hidePanel.SetActive(false);
+            info.SetInfoText("Select the character you think is possessed");
+           // hidePanel.SetActive(false);
             playerController.clickedPlayer += PlayerClicked;
         }
         private ERole eRole;
-        private void PlayerClicked(bool arg1, ERole role)
+        private void PlayerClicked(bool arg1, ERole role, EType eType)
         {
             if(arg1){
-                info.SetInfoText("You caught the witch");
+                info.SetInfoText("Nice observation. You caught the witch.");
+                foreach(var pWC in pumpkinWitchController){
+                    pWC.gameObject.SetActive(false);
+                }
+                 StartCoroutine(Restart(0));
             }else{
                 eRole = role;
                 playerRoleSelectionPanel.SetActive(true);
                 foreach(SelectRoleButton button in selectRoleButtons){
                     button.roleAssign += GuessRole;
                 }
-
                 playerController.clickedPlayer -= PlayerClicked;
-                info.SetInfoText("Ohh no. Try to guess his role to survice. The witch will kill us all if you cannot say the role");
+                info.SetInfoText($"Ohh no. Try to guess {Utilities.GetRoledNPCName(eType)} role to survice. The witch will kill us all if you cannot say the role");
             }
         }
 
-         IEnumerator Restart(){
+         IEnumerator Restart(int scene){
             yield return new WaitForSeconds(6);
-            SceneManager.LoadScene(1); 
+            SceneManager.LoadScene(scene); 
         }
         private void GuessRole(ERole role)
         {
@@ -75,17 +83,23 @@ namespace WitchOrWhich{
                     button.roleAssign -= GuessRole;
                 }
             if(eRole == role){
-                info.SetInfoText("Woo nice save. Now the witch has swapped all your roles and has got caught of one of you.");   
-                StartCoroutine(Restart());
+                hidePanel.SetActive(true);
+                info.SetInfoText("Woo nice save. Now the witch has swapped all character roles and has possessed of one of you.");   
+                StartCoroutine(Restart(1));
             }else{
-               // SceneManager.LoadScene(2);     
+                SceneManager.LoadScene(2);     
             }
         }
 
         IEnumerator RemovePanel(){
             yield return new WaitForSeconds(4);
-            playerInfoUI.gameObject.SetActive(false);
             StartCoroutine(StartDangerTime());
+        }
+
+        void Update(){
+            if(Input.GetKeyDown(KeyCode.R)){
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }
