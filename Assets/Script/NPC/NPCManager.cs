@@ -14,8 +14,9 @@ namespace WitchOrWhich.NPC
         private readonly int totalRoledNPC;
         private readonly Transform spawnPointParent;
 
-        public event Action InitializedRoledNPC;
+        public event Action<ERole, EType> InitializedRoledNPC;
         List<Transform> InstantiateGenericPlayers = new();
+        List<Vector3> instantiatePositions = new();
         private Transform witchNPC;
         public NPCManager(NPCDB nPCDB,Transform spawnPointParent, GameConfig gameConfig)
         {
@@ -23,16 +24,15 @@ namespace WitchOrWhich.NPC
             totalRoledNPC = nPCDB.roledNPC.Length;
             this.spawnPointParent = spawnPointParent;
             this.gameConfig = gameConfig;
-            InitializeRoledNPC();
+        }
+
+        public void Init(){
+             InitializeRoledNPC();
             InitializeGenericNPC();
         }
 
-        public void DangerTimeInitiated(){
-            int npcToKill = random.Next(3,6);
-            while(npcToKill > 0){
-                KillNearestNPC(witchNPC.transform.position);
-                npcToKill--;
-            }
+        public void NPCKillPlayer(){      
+            KillNearestNPC(witchNPC.transform.position);
         }
 
         private void InitializeGenericNPC()
@@ -42,6 +42,10 @@ namespace WitchOrWhich.NPC
             while(total > 0){
                 Vector3 pos = new Vector3(random.Next(-gameConfig.xRange, gameConfig.xRange),
                  random.Next(-gameConfig.yRange,gameConfig.yRange));
+                 if(instantiatePositions.Contains(pos)){
+                    continue;
+                 }
+                 instantiatePositions.Add(pos);
                 GameObject genericNPC = GameObject.Instantiate(nPCDB.genericNPC[random.Next(0, nPCDB.genericNPC.Length)], 
                 pos,Quaternion.identity);
                 InstantiateGenericPlayers.Add(genericNPC.transform);
@@ -55,6 +59,7 @@ namespace WitchOrWhich.NPC
             ShuffleNPC(ref nPCController);
             List<int> enums = new List<int>() { 0, 1, 2, 3, 4, 5 };
             int witchIndex = random.Next(0, totalRoledNPC);
+            Debug.Log(witchIndex);
             int n = totalRoledNPC;
             while (n > 0)
             {
@@ -64,6 +69,7 @@ namespace WitchOrWhich.NPC
                 NPCController currentNPCController = GameObject.Instantiate(nPCController[n], pos.position, pos.rotation).GetComponent<NPCController>();
                 currentNPCController.AssignRole(characterRole);
                 currentNPCController.SetWitch(n == witchIndex);
+                InitializedRoledNPC?.Invoke(characterRole, currentNPCController.eType);
                 if(n == witchIndex)
                     witchNPC = currentNPCController.transform;
                 enums.Remove(enums[enumTemp]);

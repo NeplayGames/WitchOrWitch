@@ -4,7 +4,7 @@ namespace WitchOrWhich.NPC
 {
     public class NPCController : MonoBehaviour
     {
-        [SerializeField] private EType eType;
+        [field:SerializeField] public EType eType {get; private set;}
 
         public ERole NPCRole { get; private set; }
         public void AssignRole(ERole eRole){

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <xRange>k__BackingField: 22
   <yRange>k__BackingField: 11
-  <minGenericNPC>k__BackingField: 105
-  <maxGenericNPC>k__BackingField: 125
+  <minGenericNPC>k__BackingField: 600
+  <maxGenericNPC>k__BackingField: 750

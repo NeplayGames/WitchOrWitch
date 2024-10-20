@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c4f9ac631fa3c40a754a1c9932582d, type: 3}
   m_Name: Sprite DB
   m_EditorClassIdentifier: 
-  redNPCSprite: {fileID: 0}
-  greenNPCSprite: {fileID: 0}
-  blueNPCSprite: {fileID: 0}
-  yellowNPCSprite: {fileID: 0}
-  whiteNPCSprite: {fileID: 0}
-  orangeNPCSprite: {fileID: 0}
+  redNPCSprite: {fileID: 21300000, guid: b13a22d4686453641bcecc9610ec9992, type: 3}
+  greenNPCSprite: {fileID: 21300000, guid: 03974ce0ea5bf9346a9b3b4fe58b87c3, type: 3}
+  blueNPCSprite: {fileID: 21300000, guid: 893d95ac55ea96345bc67989862919f7, type: 3}
+  yellowNPCSprite: {fileID: 21300000, guid: 6592b0f027e874744b488c42084a8974, type: 3}
+  whiteNPCSprite: {fileID: 21300000, guid: 07a0ffc7df71af4478296fcf59d1c6b7, type: 3}
+  orangeNPCSprite: {fileID: 21300000, guid: 7f29833de1e290d4ebdf06654f12d782, type: 3}
