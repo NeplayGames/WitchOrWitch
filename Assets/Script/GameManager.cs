@@ -18,11 +18,11 @@ namespace WitchOrWhich{
         [SerializeField] private GameConfig gameConfig;
         [SerializeField] private List<PumpkinWitchController> pumpkinWitchController;
         [SerializeField] private Transform spawnPoint;
-        [SerializeField] private GameObject hidePanel;
         [SerializeField] private Info info;
         [SerializeField] private PlayerController playerController;
         [SerializeField] private List<SelectRoleButton> selectRoleButtons = new();
         [SerializeField] private GameObject playerRoleSelectionPanel;
+        [SerializeField] private GameObject celebration;
         private NPCManager nPCManager;
         void Start(){
             nPCManager = new NPCManager(nPCDB, spawnPoint, gameConfig, killAudioSource);
@@ -57,9 +57,10 @@ namespace WitchOrWhich{
         private void PlayerClicked(bool arg1, ERole role, EType eType)
         {
             if(arg1){
-                info.SetInfoText("Nice observation. You caught the witch.");
+                info.SetInfoText("You got it. You vanished the witch and save us all.");
+                celebration.SetActive(true);
                 foreach(var pWC in pumpkinWitchController){
-                    pWC.gameObject.SetActive(false);
+                    pWC.Kill();
                 }
                  StartCoroutine(Restart(0));
             }else{
@@ -83,7 +84,6 @@ namespace WitchOrWhich{
                     button.roleAssign -= GuessRole;
                 }
             if(eRole == role){
-                hidePanel.SetActive(true);
                 info.SetInfoText("Woo nice save. Now the witch has swapped all character roles and has possessed of one of you.");   
                 StartCoroutine(Restart(1));
             }else{

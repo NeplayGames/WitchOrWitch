@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8257928000755550435}
   - component: {fileID: 4882764695174807669}
-  - component: {fileID: 7737316741303089994}
+  - component: {fileID: 4844172399123436549}
   m_Layer: 0
   m_Name: PumpkinWitch
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 2b5fa41f7b18109459380e8636c703d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -86,27 +86,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7737316741303089994
-Animator:
-  serializedVersion: 5
+--- !u!114 &4844172399123436549
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3552044233508837220}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd778959f700e4449e39cb2fec46fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <canMove>k__BackingField: 0
+  killEffect: {fileID: 655842147547984728, guid: 4a0f4d083f62f884fb5d77adcb952159, type: 3}
 --- !u!1 &6021626293166643738
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 4eea7ad754952b649bef7b210085cbc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

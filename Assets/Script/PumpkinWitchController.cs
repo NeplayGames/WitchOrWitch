@@ -6,6 +6,7 @@ using WitchOrWhich.Configs;
 public class PumpkinWitchController : MonoBehaviour
 {
     [field: SerializeField] public bool canMove {private get; set;}= false;
+    [field: SerializeField] private GameObject killEffect;
     private GameConfig gameConfig;
     private System.Random random = new System.Random();
     private float tempTime = 0;
@@ -38,5 +39,10 @@ public class PumpkinWitchController : MonoBehaviour
 
     public void Duplicate(){
         GameObject.Instantiate(this.gameObject);
+    }
+
+    public void Kill(){
+        Instantiate(killEffect, transform.position, transform.rotation);
+        this.gameObject.SetActive(false);
     }
 }

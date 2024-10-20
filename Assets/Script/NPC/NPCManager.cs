@@ -34,7 +34,7 @@ namespace WitchOrWhich.NPC
         }
 
         public void NPCKillPlayer(){     
-            int range = random.Next(1,3);
+            int range = random.Next(1,4);
             Debug.Log(range);
 
             while(range > 0){
