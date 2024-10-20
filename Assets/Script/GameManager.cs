@@ -47,7 +47,7 @@ namespace WitchOrWhich
                 pWC.canMove = true;
             }
             info.SetInfoText("Witch has possessed someone and is on kill rampage. To distract she has summon her friends as well.");
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 yield return new WaitForSeconds(3);
                 nPCManager.NPCKillPlayer();

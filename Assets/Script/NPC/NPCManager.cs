@@ -34,13 +34,12 @@ namespace WitchOrWhich.NPC
         }
 
         public void NPCKillPlayer(){     
-          //  int range = 1;
-          //  Debug.Log(range);
+            int range = random.Next(1,3);
 
-           // while(range > 0){
+            while(range > 0){
                 KillNearestNPC(witchNPC.transform.position);
-            //    range--;
-           // } 
+                range--;
+            } 
         }
 
         private void InitializeGenericNPC()
