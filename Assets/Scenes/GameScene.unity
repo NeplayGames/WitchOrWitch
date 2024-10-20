@@ -20362,6 +20362,7 @@ MonoBehaviour:
   - {fileID: 800897376}
   - {fileID: 1232461277}
   playerRoleSelectionPanel: {fileID: 2127531364}
+  celebration: {fileID: 1633963459}
 --- !u!4 &1647115925
 Transform:
   m_ObjectHideFlags: 0
